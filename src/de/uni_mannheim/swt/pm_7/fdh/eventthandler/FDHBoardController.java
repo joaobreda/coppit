@@ -52,6 +52,8 @@ public class FDHBoardController extends Observable implements Observer {
 
 	/** The sequence of replay_. */
 	private int sequenceOfReplay_;
+	
+	private boolean tutorialState = false;
 
 	/**
 	 * Instantiates a new fDH board controller.
@@ -260,6 +262,17 @@ public class FDHBoardController extends Observable implements Observer {
 			return null;
 		}
 
+	}
+	
+	public boolean getTutorialState() {
+		return this.tutorialState;
+	}
+	
+	public void setTutorialState() {
+		if(this.tutorialState)
+			this.tutorialState = false;
+		else
+			this.tutorialState = true;
 	}
 
 	/**

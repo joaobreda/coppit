@@ -61,7 +61,7 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 		this.controllerOfBoard_.addObserver(this);
 
 		this.setLayout(null);
-		restartGame = new JButton("Restart");
+		restartGame = new JButton(Messages.getString("FDHBoardView.11"));
 		restartGame.setBounds(200, 400, 100, 30);
 		restartGame.setForeground(Color.WHITE);
 		restartGame.setBackground(new Color(100, 100, 100, 200));
@@ -73,7 +73,7 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 		});
 		restartGame.setVisible(false);
 		this.add(restartGame);
-		menuGame = new JButton("Menu");
+		menuGame = new JButton(Messages.getString("FDHBoardView.12"));
 		menuGame.setBounds(350, 400, 100, 30);
 		menuGame.setForeground(Color.WHITE);
 		menuGame.setBackground(new Color(100, 100, 100, 200));
@@ -86,7 +86,7 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 		});
 		menuGame.setVisible(false);
 		this.add(menuGame);
-		exitGame = new JButton("Exit");
+		exitGame = new JButton(Messages.getString("FDHBoardView.13"));
 		exitGame.setBounds(500, 400, 100, 30);
 		exitGame.setForeground(Color.WHITE);
 		exitGame.setBackground(new Color(100, 100, 100, 200));
@@ -298,9 +298,7 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 			}
 
 			if (this.controllerOfBoard_.isStarted()) {
-				if (this.controllerOfBoard_.getWinner() != null)
-
-				{
+				if (this.controllerOfBoard_.getWinner() != null) {
 					menuGame.setVisible(true);
 					restartGame.setVisible(true);
 					exitGame.setVisible(true);
@@ -315,6 +313,23 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 					g2.drawString(Messages.getString("FDHBoardView.3") //$NON-NLS-1$
 							+ this.controllerOfBoard_.getWinner()
 									.getScoreHads().size(), 330, 380);
+				}
+				if(this.controllerOfBoard_.getTutorialState()) {
+					g2.setPaint(new Color(100, 100, 100, 250));
+					g2.fillRect(20, 20, 740, 720);
+					g2.setPaint(Color.WHITE);
+					Font font = new Font("Arial", Font.PLAIN, 40); //$NON-NLS-1$
+					g2.setFont(font);
+					g2.drawString(Messages.getString("FDHMainView.11"), 330, 80);
+					Font font2 = new Font("Arial", Font.PLAIN, 22); //$NON-NLS-1$
+					g2.setFont(font2);
+					g2.drawString(Messages.getString("FDHBoardView.4"), 40, 140);
+					g2.drawString(Messages.getString("FDHBoardView.5"), 40, 180);
+					g2.drawString(Messages.getString("FDHBoardView.6"), 40, 220);
+					g2.drawString(Messages.getString("FDHBoardView.7"), 40, 260);
+					g2.drawString(Messages.getString("FDHBoardView.8"), 40, 300);
+					g2.drawString(Messages.getString("FDHBoardView.9"), 40, 340);
+					g2.drawString(Messages.getString("FDHBoardView.10"), 40, 420);
 				}
 			}
 		} catch (NullPointerException e) {

@@ -35,6 +35,9 @@ public class FDHMainView extends JFrame {
 	// TEMP FINISH BUTTON
 	private JButton tempFinishButton;
 	
+	// Button for tutorial ingame
+	private JButton tutButton;
+		
 	private NewGameDialog newGameDialog;
 	
 	/** The Constant serialVersionUID. */
@@ -183,7 +186,7 @@ public class FDHMainView extends JFrame {
 		this.getContentPane().setBackground(Color.BLACK);
 		
 		this.setTitle("Coppit Game");
-		this.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Breda\\Downloads\\coppit-game-code-f729f351ff3adcf4109c3a3fb07086298d0c10c5\\src\\de\\uni_mannheim\\swt\\pm_7\\fdh\\gui\\coppitIcon.png"));
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/de/uni_mannheim/swt/pm_7/fdh/gui/coppitIcon.png"));
 		
 		this.gamepanel_ = new FDHBoardView(newGameDialog, this);
 
@@ -260,7 +263,22 @@ public class FDHMainView extends JFrame {
 		this.closeButton_.setVisible(true);
 		this.getContentPane().add(this.closeButton_);
 		
+		// TUTORIAL BUTTON
+		this.tutButton = new JButton(Messages.getString("FDHMainView.11")); //$NON-NLS-1$
+		this.tutButton.setBounds(760, 10, 200, 30);
+		this.tutButton.setForeground(Color.WHITE);
+		this.tutButton.setBackground(this.getContentPane().getBackground());
+		this.tutButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FDHMainView.this.gamepanel_.getControl().setTutorialState();
+				FDHMainView.this.gamepanel_.getControl().getFDHGame().change();
+		    }
+		});
+		this.tutButton.setVisible(true);
+		this.getContentPane().add(this.tutButton);
+				
 		// TEMP FINISH BUTTON
+		/*
 		this.tempFinishButton = new JButton("Finish Game"); //$NON-NLS-1$
 		this.tempFinishButton.setBounds(760, 650, 200, 30);
 		this.tempFinishButton.setForeground(Color.WHITE);
@@ -273,6 +291,7 @@ public class FDHMainView extends JFrame {
 		});
 		this.tempFinishButton.setVisible(true);
 		this.getContentPane().add(this.tempFinishButton);
+		*/
 		
 		this.getContentPane().add(this.click);
 		this.gamepanel_.setDoubleBuffered(true);
@@ -283,7 +302,6 @@ public class FDHMainView extends JFrame {
 		this.mainRootPane_ = this.getRootPane();
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.repaint();
-
 	}
 	
 	/**

@@ -107,7 +107,7 @@ public class NewGameDialog extends JFrame implements ActionListener,
 		this.setBackground(Color.BLACK);
 		this.setLocationByPlatform(true);
 		this.setTitle("Coppit Game");
-		this.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Breda\\Downloads\\coppit-game-code-f729f351ff3adcf4109c3a3fb07086298d0c10c5\\src\\de\\uni_mannheim\\swt\\pm_7\\fdh\\gui\\coppitIcon.png"));
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/de/uni_mannheim/swt/pm_7/fdh/gui/coppitIcon.png"));
 
 		this.initButton();
 		this.getContentPane().add(this.clickNewGame_);
