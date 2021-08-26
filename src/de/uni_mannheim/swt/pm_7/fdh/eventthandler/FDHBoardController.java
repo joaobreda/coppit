@@ -436,30 +436,32 @@ public class FDHBoardController extends Observable implements Observer {
 	 */
 	public  synchronized void onMouseClick(Point e) {
 		this.mousecCickPoint_ = e;
-		// ArrayList<Hat> temp = game.getActivePlayer().getHads();
 		for (Hat h : this.playesGame_.getActiveplayer().getHads()) {
+			System.out.println("Entrei 1");
 			if (h.contains(e) && !this.playesGame_.getDice().isUsed()
 					&& (this.playesGame_.getDice().getLastNumber() != 0)
 					&& (this.reachableFieldList_ != null) && (!h.isInactive())
 			) {
+				System.out.println("Entrei 2");
 				this.selectedHat_ = h;
 				h.setSourcePos(e);
 				super.setChanged();
 				this.notifyObservers();
 			}
 			if (this.reachableFieldList_ != null) {
+				System.out.println("Entrei 3");
 				for (Field s : this.reachableFieldList_) {
 					if ((s.getField().contains((e)))
 							&& this.reachableFieldList_.contains(s)) {
 
 						for (Hat t : this.playesGame_.getHats()) {
+							t.setActive();
 							if (t.equals(this.selectedHat_)) {
+								System.out.println("Entrei 4");
 								this.selectedHat_ = null;
 								this.playesGame_.makeMove(t, s);
 							}
 						}
-
-						// temp = game.getActivePlayer().getHads();
 
 						super.setChanged();
 						this.notifyObservers();

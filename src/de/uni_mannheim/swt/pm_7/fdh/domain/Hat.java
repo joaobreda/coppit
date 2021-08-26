@@ -285,6 +285,9 @@ public class Hat extends Observable {
 
 	}
 
+	public void setActive() {
+		this.hatStatus_ = false;
+	}
 	/**
 	 * Sets the position.
 	 *

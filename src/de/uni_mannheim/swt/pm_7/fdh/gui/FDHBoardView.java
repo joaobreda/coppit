@@ -61,7 +61,7 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 		this.controllerOfBoard_.addObserver(this);
 
 		this.setLayout(null);
-		restartGame = new JButton(Messages.getString("FDHBoardView.11"));
+		restartGame = new JButton(Messages.getString("FDHBoardView.12"));
 		restartGame.setBounds(200, 400, 100, 30);
 		restartGame.setForeground(Color.WHITE);
 		restartGame.setBackground(new Color(100, 100, 100, 200));
@@ -73,7 +73,7 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 		});
 		restartGame.setVisible(false);
 		this.add(restartGame);
-		menuGame = new JButton(Messages.getString("FDHBoardView.12"));
+		menuGame = new JButton(Messages.getString("FDHBoardView.13"));
 		menuGame.setBounds(350, 400, 100, 30);
 		menuGame.setForeground(Color.WHITE);
 		menuGame.setBackground(new Color(100, 100, 100, 200));
@@ -86,7 +86,7 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 		});
 		menuGame.setVisible(false);
 		this.add(menuGame);
-		exitGame = new JButton(Messages.getString("FDHBoardView.13"));
+		exitGame = new JButton(Messages.getString("FDHBoardView.14"));
 		exitGame.setBounds(500, 400, 100, 30);
 		exitGame.setForeground(Color.WHITE);
 		exitGame.setBackground(new Color(100, 100, 100, 200));
@@ -329,7 +329,8 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 					g2.drawString(Messages.getString("FDHBoardView.7"), 40, 260);
 					g2.drawString(Messages.getString("FDHBoardView.8"), 40, 300);
 					g2.drawString(Messages.getString("FDHBoardView.9"), 40, 340);
-					g2.drawString(Messages.getString("FDHBoardView.10"), 40, 420);
+					g2.drawString(Messages.getString("FDHBoardView.10"), 40, 380);
+					g2.drawString(Messages.getString("FDHBoardView.11"), 40, 460);
 				}
 			}
 		} catch (NullPointerException e) {
