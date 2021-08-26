@@ -91,7 +91,7 @@ public class NewGameDialog extends JFrame implements ActionListener,
 	
 	public static void main(String ...args)
 	{
-		 NewGameDialog game = new  NewGameDialog();
+		 NewGameDialog game = new NewGameDialog();
 	}
 	
 	/**
@@ -153,7 +153,7 @@ public class NewGameDialog extends JFrame implements ActionListener,
 	/**
 	 * Inits the button.
 	 */
-	public void initButton() {
+	private void initButton() {
 		int width = 200;
 		int height = 100;
 		this.clickNewGame_ = new JButton(Messages.getString("NewGameDialog.0")); //$NON-NLS-1$
@@ -216,7 +216,7 @@ public class NewGameDialog extends JFrame implements ActionListener,
 	/**
 	 * Inits the list.
 	 */
-	public void initList() {
+	private void initList() {
 		int width = 200;
 		int height = 200;
 		this.listModel = new DefaultListModel();

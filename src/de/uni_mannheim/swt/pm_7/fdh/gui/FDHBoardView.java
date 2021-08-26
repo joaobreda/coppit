@@ -39,9 +39,6 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 
 	/** The controller of board_. */
 	private FDHBoardController controllerOfBoard_;
-
-	/** The view of board_. */
-	public FDHBoardView viewOfBoard_;
 	
 	private JButton restartGame;
 	
@@ -54,7 +51,6 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 	 */
 	public FDHBoardView(final NewGameDialog NGD, final FDHMainView FMV) {
 		this.setSize(1280, 800);
-		this.viewOfBoard_ = this;
 		this.addMouseMotionListener(this);
 		this.addMouseListener(this);
 		this.controllerOfBoard_ = new FDHBoardController();
