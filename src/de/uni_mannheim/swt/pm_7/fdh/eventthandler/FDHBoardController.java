@@ -21,6 +21,7 @@ import de.uni_mannheim.swt.pm_7.fdh.domain.Player;
 /**
  * The Class FDHBoardController.
  */
+@SuppressWarnings("deprecation")
 public class FDHBoardController extends Observable implements Observer {
 
 	/** The highlited field_. */

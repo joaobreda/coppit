@@ -18,6 +18,7 @@ import java.util.Stack;
 /**
  * The Class Hat.
  */
+@SuppressWarnings("deprecation")
 public class Hat extends Observable {
 
 	/** The outline of hat_. */

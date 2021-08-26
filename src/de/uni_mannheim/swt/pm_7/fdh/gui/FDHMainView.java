@@ -33,7 +33,7 @@ import de.uni_mannheim.swt.pm_7.fdh.eventthandler.FDHGameFacade;
 public class FDHMainView extends JFrame {
 
 	// TEMP FINISH BUTTON
-	private JButton tempFinishButton;
+	//private JButton tempFinishButton;
 	
 	// Button for tutorial ingame
 	private JButton tutButton;
@@ -58,9 +58,6 @@ public class FDHMainView extends JFrame {
 	/** The move. */
 	private MouseMotionListener move;
 
-	/** The new game. */
-	private JButton newGame = new JButton();
-
 	/** The close button_. */
 	private JButton closeButton_;
 
@@ -74,7 +71,7 @@ public class FDHMainView extends JFrame {
 	private FDHGameFacade gameFacade_;
 
 	/** The list of players. */
-	private JList listOfPlayers;
+	private JList<String> listOfPlayers;
 
 	/** The endclick_. */
 	private ActionListener endclick_;
@@ -148,7 +145,7 @@ public class FDHMainView extends JFrame {
 	 */
 	public void displayPlayers() {
 
-		this.listOfPlayers = new JList(this.gamepanel_.getgamecontroller()
+		this.listOfPlayers = new JList<String>(this.gamepanel_.getgamecontroller()
 				.getPlayerNames());
 		this.listOfPlayers.setSelectedIndex(this.gamepanel_.getgamecontroller()
 				.getActivePlayerIndex());
@@ -302,7 +299,7 @@ public class FDHMainView extends JFrame {
 		this.gamepanel_.setBounds(0, 0, 750, 750);
 		this.initButtons();
 		this.setVisible(true);
-		this.mainRootPane_ = this.getRootPane();
+		this.setMainRootPane_(this.getRootPane());
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.repaint();
 	}
@@ -339,8 +336,8 @@ public class FDHMainView extends JFrame {
 	 */
 	void initGame(String[] names, Color[] color, boolean[] computer) {
 		this.addPlayMouseListener();
-		this.gameFacade_ = new FDHGameFacade(this.getBoard().getControl(),
-				names, color, computer);
+		this.setGameFacade_(new FDHGameFacade(this.getBoard().getControl(),
+				names, color, computer));
 		this.displayPlayers();
 	}
 
@@ -350,8 +347,8 @@ public class FDHMainView extends JFrame {
 	 * @param chosenFile the chosen file
 	 */
 	public void initReplayMode(File chosenFile) {
-		this.gameFacade_ = new FDHGameFacade(this.getBoard().getControl(),
-				chosenFile);
+		this.setGameFacade_(new FDHGameFacade(this.getBoard().getControl(),
+				chosenFile));
 		this.remove(this.click);
 		this.replayForward_ = new JButton();
 		this.replayForward_.setBounds(760, 50, 100, 50);
@@ -505,8 +502,8 @@ public class FDHMainView extends JFrame {
 	 * @param tempfile the tempfile
 	 */
 	public void initResetMode(File tempfile) {
-		this.gameFacade_ = new FDHGameFacade(this.getBoard().getControl(),
-				tempfile);
+		this.setGameFacade_(new FDHGameFacade(this.getBoard().getControl(),
+				tempfile));
 		this.gamepanel_.getControl().nextEnd();
 		this.gamepanel_.getControl().setComputer();
 		this.displayPlayers();
@@ -528,6 +525,22 @@ public class FDHMainView extends JFrame {
 		} catch (Exception e) {
 			
 		}
+	}
+
+	public FDHGameFacade getGameFacade_() {
+		return gameFacade_;
+	}
+
+	public void setGameFacade_(FDHGameFacade gameFacade_) {
+		this.gameFacade_ = gameFacade_;
+	}
+
+	public JRootPane getMainRootPane_() {
+		return mainRootPane_;
+	}
+
+	public void setMainRootPane_(JRootPane mainRootPane_) {
+		this.mainRootPane_ = mainRootPane_;
 	}
 
 }

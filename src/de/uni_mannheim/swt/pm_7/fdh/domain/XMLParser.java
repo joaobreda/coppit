@@ -54,12 +54,12 @@ public class XMLParser {
 	 * @param filepath the filepath
 	 * @return the array list
 	 */
+	@SuppressWarnings("unchecked")
 	public ArrayList<PersistenceData> decodeMoves(File filepath) {
 		try {
 			this.decodePlayedGame_ = new XMLDecoder(new BufferedInputStream(
 					new FileInputStream(filepath)));
-			return ((ArrayList<PersistenceData>) this.decodePlayedGame_
-					.readObject());
+			return ((ArrayList<PersistenceData>) this.decodePlayedGame_.readObject());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

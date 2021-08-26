@@ -13,7 +13,6 @@ import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,10 +25,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -60,10 +56,10 @@ public class NewGameDialog extends JFrame implements ActionListener,
 	private ArrayList<JLabel> listOfPlayerElementNames_ = new ArrayList<JLabel>();
 
 	/** The list of players_. */
-	private JList listOfPlayers_;
+	private JList<String> listOfPlayers_;
 
 	/** The list model. */
-	private DefaultListModel listModel;
+	private DefaultListModel<String> listModel;
 
 	/** The start game. */
 	private JButton startGame;
@@ -100,9 +96,8 @@ public class NewGameDialog extends JFrame implements ActionListener,
 	private boolean firstScreen = true;
 
 	
-	public static void main(String ...args) throws IOException
-	{
-		 NewGameDialog game = new NewGameDialog();
+	public static void main(String ...args) throws IOException {
+		 new NewGameDialog();
 	}
 	
 	/**
@@ -251,11 +246,11 @@ public class NewGameDialog extends JFrame implements ActionListener,
 	private void initList() {
 		int width = 200;
 		int height = 200;
-		this.listModel = new DefaultListModel();
+		this.listModel = new DefaultListModel<String>();
 		this.listModel.addElement(Messages.getString("NewGameDialog.2")); //$NON-NLS-1$
 		this.listModel.addElement(Messages.getString("NewGameDialog.3")); //$NON-NLS-1$
 		this.listModel.addElement(Messages.getString("NewGameDialog.4")); //$NON-NLS-1$
-		this.listOfPlayers_ = new JList(this.listModel);
+		this.listOfPlayers_ = new JList<String>(this.listModel);
 		this.listOfPlayers_.setSelectedIndex(1);
 		this.listOfPlayers_.setBounds(this.getWidth() / 2 - width / 2,
 				this.getHeight() / 2 - height / 2 + 200, width, height);

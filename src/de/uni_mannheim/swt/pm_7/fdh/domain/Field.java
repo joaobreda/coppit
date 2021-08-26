@@ -169,6 +169,7 @@ public class Field {
 	 *
 	 * @return the pos to had
 	 */
+	@SuppressWarnings("finally")
 	public Point getPosToHad() {
 		try {
 			if (!this.hadsOnField_.isEmpty()) {

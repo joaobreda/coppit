@@ -29,6 +29,7 @@ import de.uni_mannheim.swt.pm_7.fdh.eventthandler.FDHBoardController;
 /**
  * The Class FDHBoardView.
  */
+@SuppressWarnings("deprecation")
 public class FDHBoardView extends JPanel implements MouseMotionListener,
 		MouseListener, Observer {
 
@@ -79,7 +80,7 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 				FMV.dispatchEvent(new WindowEvent(FMV, WindowEvent.WINDOW_CLOSING));
 				NGD.dispatchEvent(new WindowEvent(NGD, WindowEvent.WINDOW_CLOSING));
 				try {
-					NewGameDialog game = new NewGameDialog();
+					new NewGameDialog();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -219,7 +220,7 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		super.paintComponents(g2);
 
-		this.stroke = new BasicStroke(50);
+		this.setStroke(new BasicStroke(50));
 
 		try {
 			// Paint Backgroung
@@ -354,6 +355,14 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+
+	public BasicStroke getStroke() {
+		return stroke;
+	}
+
+	public void setStroke(BasicStroke stroke) {
+		this.stroke = stroke;
 	}
 
 }

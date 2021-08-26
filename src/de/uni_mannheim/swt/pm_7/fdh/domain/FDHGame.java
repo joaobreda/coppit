@@ -14,6 +14,7 @@ import java.util.Observable;
 /**
  * The Class FDHGame.
  */
+@SuppressWarnings("deprecation")
 public class FDHGame extends Observable {
 
 	/** The dice of game_. */
