@@ -174,68 +174,13 @@ public class FDHMainView extends JFrame {
 	FDHBoardView getBoard() {
 		return this.gamepanel_;
 	}
-
-	/**
-	 * Inits the.
-	 */
-	private void init() {
-		this.addComponentListener(FDHMainView.window);
-		this.setSize(1024, 800);
-		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		this.setLayout(null);
-		this.getContentPane().setBackground(Color.BLACK);
-		
-		this.setTitle("Coppit Game");
-		this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/de/uni_mannheim/swt/pm_7/fdh/gui/coppitIcon.png"));
-		
-		this.gamepanel_ = new FDHBoardView(newGameDialog, this);
-
-		this.clicked_ = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				FDHMainView.this.dicedNumber_.setForeground(Color.GREEN);
-				FDHMainView.this.dicedNumber_.setText(String
-						.valueOf(FDHMainView.this.gamepanel_.getControl()
-								.rollDice()));
-
-			}
-		};
-
-		this.click.addActionListener(this.clicked_);
-
-		FDHMainView.window = new ComponentListener() {
-			@Override
-			public void componentHidden(ComponentEvent arg0) {
-				// RootExample.newgame.setLocationRelativeTo(this);
-
-			}
-
-			@Override
-			public void componentMoved(ComponentEvent arg0) {
-
-			}
-
-			@Override
-			public void componentResized(ComponentEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void componentShown(ComponentEvent arg0) {
-
-			}
-		};
-
-		this.addComponentListener(FDHMainView.window);
-
-		this.gamepanel_.setBounds(0, 0, 750, 750);
+	
+	// Initialize class buttons
+	private void initButtons() {
 		this.click.setBounds(760, 50, 200, 30);
 		this.click.setForeground(Color.WHITE);
 		this.click.setBackground(this.getContentPane().getBackground());
-		// click.setVisible(false);
 		this.initDiced();
-		// diced.setVisible(false);
 
 		this.closeButton_ = new JButton(Messages.getString("FDHMainView.5")); //$NON-NLS-1$
 		this.closeButton_.setBounds(760, 700, 200, 30);
@@ -298,6 +243,64 @@ public class FDHMainView extends JFrame {
 
 		this.getContentPane().add(this.gamepanel_);
 		this.getContentPane().add(this.dicedNumber_);
+	}
+
+	/**
+	 * Inits the.
+	 */
+	private void init() {
+		this.addComponentListener(FDHMainView.window);
+		this.setSize(1024, 800);
+		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		this.setLayout(null);
+		this.getContentPane().setBackground(Color.BLACK);
+		
+		this.setTitle("Coppit Game");
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/de/uni_mannheim/swt/pm_7/fdh/gui/coppitIcon.png"));
+		
+		this.gamepanel_ = new FDHBoardView(newGameDialog, this);
+
+		this.clicked_ = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FDHMainView.this.dicedNumber_.setForeground(Color.GREEN);
+				FDHMainView.this.dicedNumber_.setText(String
+						.valueOf(FDHMainView.this.gamepanel_.getControl()
+								.rollDice()));
+
+			}
+		};
+
+		this.click.addActionListener(this.clicked_);
+
+		FDHMainView.window = new ComponentListener() {
+			@Override
+			public void componentHidden(ComponentEvent arg0) {
+				// RootExample.newgame.setLocationRelativeTo(this);
+
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent arg0) {
+
+			}
+
+			@Override
+			public void componentResized(ComponentEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void componentShown(ComponentEvent arg0) {
+
+			}
+		};
+
+		this.addComponentListener(FDHMainView.window);
+
+		this.gamepanel_.setBounds(0, 0, 750, 750);
+		this.initButtons();
 		this.setVisible(true);
 		this.mainRootPane_ = this.getRootPane();
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
