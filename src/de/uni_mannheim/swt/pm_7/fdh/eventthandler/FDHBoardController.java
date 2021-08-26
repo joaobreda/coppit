@@ -55,6 +55,8 @@ public class FDHBoardController extends Observable implements Observer {
 	private int sequenceOfReplay_;
 	
 	private boolean tutorialState = false;
+	
+	private boolean optionsMenu = false;
 
 	/**
 	 * Instantiates a new fDH board controller.
@@ -552,6 +554,17 @@ public class FDHBoardController extends Observable implements Observer {
 		super.setChanged();
 		this.notifyObservers();
 		this.rollDice();
+	}
+
+	public boolean getOptionsMenu() {
+		return optionsMenu;
+	}
+
+	public void setOptionsMenu() {
+		if(this.optionsMenu)
+			this.optionsMenu = false;
+		else
+			this.optionsMenu = true;
 	}
 
 }

@@ -59,7 +59,7 @@ public class FDHMainView extends JFrame {
 	private MouseMotionListener move;
 
 	/** The close button_. */
-	private JButton closeButton_;
+	private JButton optionsButton;
 
 	/** The window. */
 	private static ComponentListener window;
@@ -72,9 +72,6 @@ public class FDHMainView extends JFrame {
 
 	/** The list of players. */
 	private JList<String> listOfPlayers;
-
-	/** The endclick_. */
-	private ActionListener endclick_;
 
 	/** The replay forward_. */
 	private JButton replayForward_;
@@ -179,31 +176,18 @@ public class FDHMainView extends JFrame {
 		this.click.setBackground(this.getContentPane().getBackground());
 		this.initDiced();
 
-		this.closeButton_ = new JButton(Messages.getString("FDHMainView.5")); //$NON-NLS-1$
-		this.closeButton_.setBounds(760, 700, 200, 30);
-		this.closeButton_.setForeground(Color.WHITE);
-		this.closeButton_.setBackground(this.getContentPane().getBackground());
-		this.endclick_ = new ActionListener() {
-			@Override
+		this.optionsButton = new JButton(Messages.getString("FDHMainView.5")); //$NON-NLS-1$
+		this.optionsButton.setBounds(760, 700, 200, 30);
+		this.optionsButton.setForeground(Color.WHITE);
+		this.optionsButton.setBackground(this.getContentPane().getBackground());
+		this.optionsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!FDHMainView.this.gamepanel_.getControl().getFDHGame()
-						.isReplayMode()) {
-					FDHMainView.this.gamepanel_
-							.getControl()
-							.getFDHGame()
-							.getPars()
-							.parseMove(
-									FDHMainView.this.gamepanel_.getControl()
-											.getFDHGame());
-				}
-				System.exit(0);
-
-			}
-		};
-
-		this.closeButton_.addActionListener(this.endclick_);
-		this.closeButton_.setVisible(true);
-		this.getContentPane().add(this.closeButton_);
+				FDHMainView.this.gamepanel_.getControl().setOptionsMenu();
+				FDHMainView.this.gamepanel_.getControl().getFDHGame().change();
+		    }
+		});
+		this.optionsButton.setVisible(true);
+		this.getContentPane().add(this.optionsButton);
 		
 		// TUTORIAL BUTTON
 		this.tutButton = new JButton(Messages.getString("FDHMainView.11")); //$NON-NLS-1$

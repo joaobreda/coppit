@@ -317,6 +317,17 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 							+ this.controllerOfBoard_.getWinner()
 									.getScoreHads().size(), 330, 380);
 				}
+				if (this.controllerOfBoard_.getOptionsMenu()) {
+					menuGame.setVisible(true);
+					restartGame.setVisible(true);
+					exitGame.setVisible(true);
+					g2.setPaint(new Color(100, 100, 100, 200));
+					g2.fillRect(150, 250, 500, 200);
+					g2.setPaint(Color.WHITE);
+					Font font = new Font("Arial", Font.BOLD, 40); //$NON-NLS-1$
+					g2.setFont(font);
+					g2.drawString(Messages.getString("FDHMainView.5"), 330, 340);
+				}
 				if(this.controllerOfBoard_.getTutorialState()) {
 					g2.setPaint(new Color(100, 100, 100, 250));
 					g2.fillRect(20, 20, 740, 720);
