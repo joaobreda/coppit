@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -77,7 +78,12 @@ public class FDHBoardView extends JPanel implements MouseMotionListener,
 			public void actionPerformed(ActionEvent e) {
 				FMV.dispatchEvent(new WindowEvent(FMV, WindowEvent.WINDOW_CLOSING));
 				NGD.dispatchEvent(new WindowEvent(NGD, WindowEvent.WINDOW_CLOSING));
-				NewGameDialog game = new NewGameDialog();
+				try {
+					NewGameDialog game = new NewGameDialog();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		    }
 		});
 		menuGame.setVisible(false);

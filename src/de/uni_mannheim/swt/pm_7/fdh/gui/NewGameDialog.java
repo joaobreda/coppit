@@ -4,6 +4,8 @@
 package de.uni_mannheim.swt.pm_7.fdh.gui;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,9 +13,12 @@ import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -21,8 +26,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -87,19 +94,24 @@ public class NewGameDialog extends JFrame implements ActionListener,
 
 	/** The reset game act_. */
 	private ActionListener resetGameAct_;
+	
+	private Image image;
+	
+	private boolean firstScreen = true;
 
 	
-	public static void main(String ...args)
+	public static void main(String ...args) throws IOException
 	{
 		 NewGameDialog game = new NewGameDialog();
 	}
 	
 	/**
 	 * Instantiates a new new game dialog.
+	 * @throws IOException 
 	 */
-	public NewGameDialog() {
+	public NewGameDialog() throws IOException {
 		super();
-		this.setSize(1000, 400);
+		this.setSize(1000, 500);
 		this.setLayout(null);
 		this.getContentPane().setBackground(Color.BLACK);
 		this.setEnabled(true);
@@ -107,7 +119,8 @@ public class NewGameDialog extends JFrame implements ActionListener,
 		this.setBackground(Color.BLACK);
 		this.setLocationByPlatform(true);
 		this.setTitle("Coppit Game");
-		this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/de/uni_mannheim/swt/pm_7/fdh/gui/coppitIcon.png"));
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/de/uni_mannheim/swt/pm_7/fdh/gui/coppitIcon.png"));	
+        this.loadImage();
 
 		this.initButton();
 		this.getContentPane().add(this.clickNewGame_);
@@ -124,7 +137,25 @@ public class NewGameDialog extends JFrame implements ActionListener,
 		}
 		this.initList();
 		this.getContentPane().add(this.listOfPlayers_);
-
+		this.validate();
+		this.repaint();
+	}
+	
+	private void loadImage() {
+		try {
+			image = ImageIO.read(new File("src/de/uni_mannheim/swt/pm_7/fdh/gui/coppitLogo.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void paint(Graphics g) {
+		super.paint(g);
+		
+		if(firstScreen) {
+			g.drawImage(image, 370, 80, this);
+		}	
 	}
 
 	/*
@@ -158,13 +189,14 @@ public class NewGameDialog extends JFrame implements ActionListener,
 		int height = 100;
 		this.clickNewGame_ = new JButton(Messages.getString("NewGameDialog.0")); //$NON-NLS-1$
 		this.clickNewGame_.setBounds(this.getWidth() / 2 - width / 2,
-				this.getHeight() / 2 - height / 2 - 100, width, height);
+				this.getHeight() / 2 - height / 2, width, height);
 		this.clickNewGame_.setForeground(Color.WHITE);
 		this.clickNewGame_.setBackground(Color.BLACK);
 		this.clickNewGame_.setVisible(true);
 		this.clickedNewGameListener_ = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				firstScreen = false;
 				NewGameDialog.this.counting_ = NewGameDialog.this.listOfPlayers_
 						.getSelectedIndices()[0];
 				NewGameDialog.this.openPlayerDialog();
@@ -177,7 +209,7 @@ public class NewGameDialog extends JFrame implements ActionListener,
 		this.analyseGameButton_ = new JButton(
 				Messages.getString("NewGameDialog.1")); //$NON-NLS-1$
 		this.analyseGameButton_.setBounds(this.getWidth() / 4 - width / 2,
-				this.getHeight() / 2 - height / 2 - 100, width, height);
+				this.getHeight() / 2 - height / 2, width, height);
 		this.analyseGameButton_.setForeground(Color.WHITE);
 		this.analyseGameButton_.setBackground(Color.BLACK);
 		this.analyseGameButton_.setVisible(true);
@@ -195,7 +227,7 @@ public class NewGameDialog extends JFrame implements ActionListener,
 
 		this.resetGame_ = new JButton(Messages.getString("NewGameDialog.10")); //$NON-NLS-1$
 		this.resetGame_.setBounds((int) (this.getWidth() / 1.33 - width / 2),
-				this.getHeight() / 2 - height / 2 - 100, width, height);
+				this.getHeight() / 2 - height / 2, width, height);
 		this.resetGame_.setForeground(Color.WHITE);
 		this.resetGame_.setBackground(Color.BLACK);
 		this.resetGame_.setVisible(true);
@@ -226,7 +258,7 @@ public class NewGameDialog extends JFrame implements ActionListener,
 		this.listOfPlayers_ = new JList(this.listModel);
 		this.listOfPlayers_.setSelectedIndex(1);
 		this.listOfPlayers_.setBounds(this.getWidth() / 2 - width / 2,
-				this.getHeight() / 2 - height / 2 + 150, width, height);
+				this.getHeight() / 2 - height / 2 + 200, width, height);
 		this.listOfPlayers_.setForeground(Color.WHITE);
 		this.listOfPlayers_.setBackground(Color.BLACK);
 		this.listOfPlayers_.setVisible(true);
